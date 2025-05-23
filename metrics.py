@@ -17,7 +17,7 @@ from pylint.reporters.text import TextReporter
 # pip install radon pylint requests pyyaml pytest-json-report
 
 # Файл с тестами (обязательно .py)
-TEST_FILEs = ["GPT/test_with_links_no_details.py", "GPT/test_no_links_with_details.py"]
+TEST_FILEs = ["sub_test/subtest.py"]
 
 # Базовый URL для извлечения эндпоинтов
 BASE_URL = "https://petstore.swagger.io/v2"
@@ -66,7 +66,7 @@ def extract_longrepr_text(lr) -> str:
         return str(lr)
     
 
-def get_pass_fail_rate(report: dict) -> Tuple[int, int]:
+def get_pass_fail_rate_firs(report: dict) -> Tuple[int, int]:
     """
     Выводит сводные метрики по тестам:
      - total, corrected_cnt/%, suspicious_cnt/% 
@@ -111,10 +111,56 @@ def get_pass_fail_rate(report: dict) -> Tuple[int, int]:
     total_nonzero   = total or 1
 
     print("\n📊 Результаты get_pass_fail_rate:")
-    print(f"✅ Всего тестов: {total}")
+    print(f"🎯 Pass Rate: {passed}/{total} ({passed/total_nonzero:.1%})")
+
+    return passed, failed
+
+def get_pass_fail_rate_sec(report: dict) -> Tuple[int, int]:
+    """
+    Выводит сводные метрики по тестам:
+     - total, corrected_cnt/%, suspicious_cnt/% 
+     - Adjusted Pass Rate
+    Возвращает (passed, failed).
+    """
+    tests = report.get("tests", [])
+    total = len(tests)
+
+    adjusted = []
+    suspicious = []
+
+    for t in tests:
+        if t.get("outcome") != "passed":
+            text = extract_longrepr_text(t["call"].get("longrepr", ""))
+            nid = t["nodeid"]
+
+            # 1) assert 200 == CODE
+            if any(re.search(rf"assert\s+200\s+==\s+{c}", text) for c in ACCEPTABLE_CODES):
+                adjusted.append(nid)
+                continue
+
+            # 2) assert 200 in [C1, C2, ...]
+            m = re.search(r"assert\s+200\s+in\s+[\[\(]([^\]\)]+)[\]\)]", text)
+            if m:
+                try:
+                    codes = [int(c.strip()) for c in m.group(1).split(",")]
+                    if any(c in ACCEPTABLE_CODES for c in codes):
+                        adjusted.append(nid)
+                        continue
+                except ValueError:
+                    pass
+
+            # 3) assert 4xx == 200
+            if re.search(r"assert\s+4\d\d\s+==\s+200", text):
+                suspicious.append(nid)
+
+    corrected_cnt   = len(adjusted)
+    suspicious_cnt  = len(suspicious)
+    passed          = sum(1 for t in tests if t.get("outcome") == "passed" or t["nodeid"] in adjusted)
+    failed          = total - passed
+    total_nonzero   = total or 1
+
     print(f"✔️ Скорректировано (200==4xx / in [...]): {corrected_cnt} ({corrected_cnt/total_nonzero*100:.1f}%)")
     print(f"🟡 Подозрительных (4xx==200): {suspicious_cnt} ({suspicious_cnt/total_nonzero*100:.1f}%)")
-    print(f"🎯 Adjusted Pass Rate: {passed}/{total} ({passed/total_nonzero:.1%})")
 
     return passed, failed
 
@@ -352,7 +398,7 @@ def measure_api_coverage(
     # 4) Вычисляем процент
     pct = (covered / total * 100) if total else 0.0
 
-    print(f"🧪 API partly Endpoint Coverage: {covered}/{total} ({pct:.1f}%)")
+    print(f"\n🧪 API partly Endpoint Coverage: {covered}/{total} ({pct:.1f}%)")
 
 
 
@@ -459,7 +505,7 @@ def analyze_unSpecification_status_codes(
 
     cnt = len(unSpecification)
     pct = cnt/ (total or 1) * 100
-    print(f"❗ Незаявленные статус-коды: {cnt} / {total} ({pct:.1f}%)")
+    print(f"❗ Незаявленные статус-коды: {cnt} / {total} ({pct:.1f}%)\n")
 
     return unSpecification
 
@@ -489,14 +535,14 @@ def analyze_unSpecification_status_det(
         for m, path, actual, exp in unSpecification:
             print(f"   - {m} {path}: получили {actual}, ожидали [{exp or '-'}]")
 
-def show_status_code_coverage(
+
+
+def show_status_code_coverage_sec(
     used_status_codes: Dict[Tuple[str, str], Set[str]],
     openapi_spec: dict
 ) -> None:
     """
-    Для каждого эндпоинта из openapi_spec сравнивает
-    объявленные коды ответов (включая 'default') и те, что реально получили,
-    и выводит таблицу с дополнительной статистикой.
+    Среднее покрытие по разделам граф.
     """
     import re
 
@@ -550,6 +596,58 @@ def show_status_code_coverage(
     for sec, pct_list in sorted(section_stats.items()):
         sec_avg = sum(pct_list) / len(pct_list)
         print(f"  - {sec}: {sec_avg:.1f}%")
+
+
+
+def show_status_code_coverage(
+    used_status_codes: Dict[Tuple[str, str], Set[str]],
+    openapi_spec: dict
+) -> None:
+    """
+    Для каждого эндпоинта из openapi_spec сравнивает
+    объявленные коды ответов (включая 'default') и те, что реально получили,
+    и выводит таблицу с дополнительной статистикой.
+    """
+    import re
+
+    # Собираем ожидаемые коды по (METHOD, PATH)
+    Specification_codes: Dict[Tuple[str, str], List[str]] = {}
+    for raw_path, methods in openapi_spec.get('paths', {}).items():
+        norm = re.sub(r'\{\w+\}', '{param}', raw_path)
+        for http_method, op_obj in methods.items():
+            m = http_method.upper()
+            if m not in {'GET', 'POST', 'PUT', 'DELETE', 'PATCH'}:
+                continue
+            codes = list(op_obj.get('responses', {}).keys())
+            Specification_codes[(m, norm)] = sorted(codes)
+
+    # Подготовка строк: сортируем по path
+    rows = []
+    for (method, path) in sorted(Specification_codes.keys(), key=lambda x: (x[1], x[0])):
+        exp_codes = Specification_codes[(method, path)]
+        recv = sorted(used_status_codes.get((method, path), []))
+        declared = set(exp_codes)
+        actual_declared = [code for code in recv if code in declared]
+        missing = sorted(declared - set(actual_declared))
+
+        # Обработка случая с единственным default
+        if declared == {'default'}:
+            coverage_pct = 100.0
+            actual_declared = ['default']
+            missing = []
+        else:
+            coverage_pct = (len(actual_declared) / len(declared)) * 100.0 if declared else 0.0
+
+        rows.append({
+            'method': method,
+            'path': path,
+            'Specification': ','.join(exp_codes) or '-',
+            'Expected': ','.join(recv) or '-',
+            'missing': ','.join(missing) or '-',
+            'coverage_pct': coverage_pct,
+        })
+
+
 
     # Вычисляем размеры столбцов
     headers = ['METHOD', 'PATH', 'Specification', 'Expected', 'Missing', 'CovPct']
@@ -716,27 +814,31 @@ if __name__ == "__main__":
         spec_bytes = fetch_spec(BASE_URL, ENDPOINTS)
         parsed = parse_openapi(spec_bytes) if spec_bytes else {}
 
+        # 8) Pylint
+        analyze_style(TEST_FILE)
+
+
         # 2) Запускаем pytest и считаем pass/fail
         report = run_pytest_json()
-        if report:
-            get_pass_fail_rate(report)
+        get_pass_fail_rate_firs(report)
 
         # 3) Извлекаем все вызовы и коды
         used = extract_used_endpoints(TEST_FILE)
         used_status_codes = extract_used_status_codes(TEST_FILE)
 
-        # 8) Pylint
-        analyze_style(TEST_FILE)
-
-        # 5) Частичное покрытие **по endpoint-ам** (метод+путь)
-        #    Передаём именно used_status_codes и распарсенный spec:
-        measure_api_coverage(used_status_codes, parsed)
-
-
         # 6) Полное покрытие **по статус-кодам**
         measure_full_status_coverage(used_status_codes, parsed)
 
+
+        # Покрытие по разделам
+        show_status_code_coverage_sec(used_status_codes, parsed)
+        
+        # 5) Частичное покрытие **по endpoint-ам** (метод+путь)
+        measure_api_coverage(used_status_codes, parsed)
         analyze_unSpecification_status_codes(TEST_FILE, parsed)
+
+        get_pass_fail_rate_sec(report)
+
 
         # 4) Таблица по всем status-кодам
         show_status_code_coverage(used_status_codes, parsed)

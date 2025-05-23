@@ -1,0 +1,74 @@
+🎯 Pass Rate: 36/53 (67.9%)
+API Endpoint Coverage: 10/20 (50.0%)
+
+Средний процент покрытия по endpoint: 70.0%
+Средний процент покрытия по разделам:
+  - pet: 52.1%
+  - store: 79.2%
+  - user: 83.3%
+
+🧪 API partly Endpoint Coverage: 18/20 (90.0%)
+❗ Незаявленные статус-коды: 16 / 53 (30.2%)
+
+✔️ Скорректировано (200==4xx / in [...]): 10 (18.9%)
+🟡 Подозрительных (4xx==200): 4 (7.5%)
+
+METHOD | PATH                     | Specification | Expected    | Missing | CovPct
+------ | ------------------------ | ------------- | ----------- | ------- | ------
+POST   | /pet                     | 405           | 200,400,403 | 405     |    0.0%
+PUT    | /pet                     | 400,404,405   | 200,400,404 | 405     |   66.7%
+GET    | /pet/findByStatus        | 200,400       | 200,400     | -       |  100.0%
+GET    | /pet/findByTags          | 200,400       | -           | 200,400 |    0.0%
+DELETE | /pet/{param}             | 400,404       | 200,404     | 400     |   50.0%
+GET    | /pet/{param}             | 200,400,404   | 200,400,404 | -       |  100.0%
+POST   | /pet/{param}             | 405           | -           | 405     |    0.0%
+POST   | /pet/{param}/uploadImage | 200           | 200,404     | -       |  100.0%
+GET    | /store/inventory         | 200           | 200         | -       |  100.0%
+POST   | /store/order             | 200,400       | 200,400     | -       |  100.0%
+DELETE | /store/order/{param}     | 400,404       | 200,400     | 404     |   50.0%
+GET    | /store/order/{param}     | 200,400,404   | 200,404     | 400     |   66.7%
+POST   | /user                    | default       | 200,400     | -       |  100.0%
+POST   | /user/createWithArray    | default       | 200,400     | -       |  100.0%
+POST   | /user/createWithList     | default       | 200,400     | -       |  100.0%
+GET    | /user/login              | 200,400       | 200,400     | -       |  100.0%
+GET    | /user/logout             | default       | 200         | -       |  100.0%
+DELETE | /user/{param}            | 400,404       | 200,404     | 400     |   50.0%
+GET    | /user/{param}            | 200,400,404   | 200,404     | 400     |   66.7%
+PUT    | /user/{param}            | 400,404       | 200,404     | 400     |   50.0%
+
+❗ Список незаявленных случаев:
+   - POST /pet: получили 400, ожидали [405]
+   - POST /pet: получили 403, ожидали [405]
+   - POST /pet: получили 200, ожидали [405]
+   - PUT /pet: получили 200, ожидали [400,404,405]
+   - DELETE /pet/{param}: получили 200, ожидали [400,404]
+   - POST /pet/{param}/uploadImage: получили 404, ожидали [200]
+   - DELETE /store/order/{param}: получили 200, ожидали [400,404]
+   - POST /user: получили 400, ожидали [-]
+   - POST /user: получили 200, ожидали [-]
+   - POST /user/createWithArray: получили 400, ожидали [-]
+   - POST /user/createWithArray: получили 200, ожидали [-]
+   - POST /user/createWithList: получили 400, ожидали [-]
+   - POST /user/createWithList: получили 200, ожидали [-]
+   - PUT /user/{param}: получили 200, ожидали [400,404]
+   - DELETE /user/{param}: получили 200, ожидали [400,404]
+   - GET /user/logout: получили 200, ожидали [-]
+
+✔️ Список скорректированных тестов:
+   - sub_test/subtest.py::test_post_pet_missing_required
+   - sub_test/subtest.py::test_put_pet_not_found
+   - sub_test/subtest.py::test_delete_pet_not_found
+   - sub_test/subtest.py::test_put_user_not_found
+   - sub_test/subtest.py::test_delete_user_not_found
+   - sub_test/subtest.py::test_get_user_login_invalid
+   - sub_test/subtest.py::test_auth_and_access_flow
+   - sub_test/subtest.py::test_post_pet_edge_case_empty_name
+   - sub_test/subtest.py::test_get_pet_find_by_status_empty
+   - sub_test/subtest.py::test_post_user_edge_case_no_username
+
+🟡 Список подозрительных тестов:
+   - sub_test/subtest.py::test_delete_pet_positive
+   - sub_test/subtest.py::test_post_pet_by_form_positive
+   - sub_test/subtest.py::test_crud_pet_flow
+   - sub_test/subtest.py::test_crud_store_order_flow
+
