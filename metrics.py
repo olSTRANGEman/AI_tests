@@ -17,7 +17,7 @@ from pylint.reporters.text import TextReporter
 # pip install radon pylint requests pyyaml pytest-json-report
 
 # Файл с тестами (обязательно .py)
-TEST_FILEs = ["Grok/test_with_full_with_spec.py"]
+TEST_FILEs = ["GPT/test_with_links_no_details.py", "GPT/test_no_links_with_details.py"]
 
 # Базовый URL для извлечения эндпоинтов
 BASE_URL = "https://petstore.swagger.io/v2"
@@ -745,7 +745,7 @@ if __name__ == "__main__":
 
 
         # Долго, но надежно
-        names = extract_test_names(TEST_FILE)
-        detect_flaky_tests(names)
+        # names = extract_test_names(TEST_FILE)
+        # detect_flaky_tests(names)
 
         print("\n"*3)
