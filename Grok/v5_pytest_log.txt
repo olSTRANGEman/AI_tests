@@ -1,0 +1,16 @@
+...FF..F..FF.......F...F...........FFF.......FFF.......                                                                                                                                          [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Grok/v5_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED Grok/v5_main.py::test_get_pet_by_id_not_found - assert 200 == 404
+FAILED Grok/v5_main.py::test_put_pet_invalid_data - requests.exceptions.RetryError: HTTPSConnectionPool(host='petstore.swagger.io', port=443): Max retries exceeded with url: /v2/pet (Caused by Resp...
+FAILED Grok/v5_main.py::test_delete_pet_valid - assert 404 in [200, 400]
+FAILED Grok/v5_main.py::test_delete_pet_not_found - assert 200 == 404
+FAILED Grok/v5_main.py::test_post_pet_by_id_method_not_allowed - assert 415 == 405
+FAILED Grok/v5_main.py::test_get_store_order_by_id_valid - assert 404 == 200
+FAILED Grok/v5_main.py::test_put_user_not_found - assert 200 == 404
+FAILED Grok/v5_main.py::test_put_user_invalid_id - assert 200 == 404
+FAILED Grok/v5_main.py::test_delete_user_valid - assert 404 in [200, 400]
+FAILED Grok/v5_main.py::test_crud_pet_flow - assert 404 == 200
+FAILED Grok/v5_main.py::test_crud_store_order_flow - assert 404 == 200
+FAILED Grok/v5_main.py::test_crud_user_flow - assert 404 == 200
+13 failed, 42 passed in 40.29s

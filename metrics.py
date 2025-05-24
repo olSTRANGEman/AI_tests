@@ -17,7 +17,7 @@ from pylint.reporters.text import TextReporter
 # pip install radon pylint requests pyyaml pytest-json-report
 
 # Файл с тестами (обязательно .py)
-TEST_FILEs = ["sub_test/subtest.py"]
+TEST_FILEs = ["Grok/v6_main.py"]
 
 # Базовый URL для извлечения эндпоинтов
 BASE_URL = "https://petstore.swagger.io/v2"
@@ -207,18 +207,13 @@ def print_pass_fail_details(report: dict) -> None:
             print(f"   - {nid}")
 
 
-
-
-
-
-
 def extract_used_endpoints(test_file: str) -> Set[Tuple[str, str]]:
     text = open(test_file, encoding='utf-8').read()
 
-    # 1) Собираем все определения переменных URL
+    # 1) Collect URL variable definitions
     url_var_pattern = re.compile(
         r'(\w+)\s*=\s*'
-        r'(?:f?["\']\{?BASE_URL\}?/([^"\'\?]+)(?:\?[^"\']*)?["\']'
+        r'(?:f?["\'](?:\{?BASE_URL\}?/)?([^"\'\?]+)(?:\?[^"\']*)?["\']'
         r'|BASE_URL\s*\+\s*["\']([^"\\?]+)["\'])',
         re.IGNORECASE
     )
@@ -227,29 +222,35 @@ def extract_used_endpoints(test_file: str) -> Set[Tuple[str, str]]:
         var = m.group(1)
         raw = m.group(2) or m.group(3)
         url_vars[var] = raw.strip('/')
+        # print(f"Found URL var: {var} = {raw}")  # Debug
 
-    # 2) Паттерны прямых вызовов
+    # 2) Patterns for direct HTTP calls
     direct_patterns = [
+        # Match session/requests.get|post|put|delete(f"...")
         re.compile(
-            r'requests\.(get|post|put|delete)\s*\(\s*f?["\']'
+            r'(?:requests|session)\.(get|post|put|delete)\s*\(\s*f?["\']'
             r'(?:\{?BASE_URL\}?/)?([^"\'\?]+?)(?:\?[^"\']*)?["\']\s*(?:,.*)?\)',
             re.IGNORECASE
         ),
+        # Match send_request("METHOD", f"...")
         re.compile(
             r'send_request\(\s*["\'](GET|POST|PUT|DELETE)["\']\s*,\s*f?["\']'
             r'(?:\{?BASE_URL\}?/)?([^"\'\?]+)(?:\?[^"\']*)?["\']',
             re.IGNORECASE
         ),
+        # Match send_request("METHOD", BASE_URL + "...")
         re.compile(
             r'send_request\(\s*["\'](GET|POST|PUT|DELETE)["\']\s*,\s*'
             r'BASE_URL\s*\+\s*["\']([^"\\?]+)["\']',
             re.IGNORECASE
         ),
     ]
+
+    # 3) Pattern for variable-based calls
     var_call_pattern = re.compile(
-        r'(?:requests\.(get|post|put|delete)|send_request)\s*\(\s*'
+        r'(?:(?:requests|session)\.(get|post|put|delete)|send_request)\s*\(\s*'
         r'(?:["\'](GET|POST|PUT|DELETE)["\']\s*,\s*)?'
-        r'(\w+)',
+        r'([^\s"\']+?)\s*(?:,|\))',
         re.IGNORECASE
     )
 
@@ -260,21 +261,25 @@ def extract_used_endpoints(test_file: str) -> Set[Tuple[str, str]]:
     }
     endpoints: Set[Tuple[str, str]] = set()
 
-    # 3) Обработка прямых вызовов
+    # 4) Process direct calls
     for pat in direct_patterns:
         for method, raw in pat.findall(text):
             m = method.upper()
             core = raw.strip('/')
             segs = [seg if seg in fixed_segments else '{param}' for seg in core.split('/')]
-            endpoints.add((m, '/' + '/'.join(segs)))
+            endpoint = '/' + '/'.join(segs)
+            endpoints.add((m, endpoint))
+            # print(f"Direct call: {m} {endpoint}")  # Debug
 
-    # 4) Обработка вызовов через переменные
+    # 5) Process variable-based calls
     for m1, m2, var in var_call_pattern.findall(text):
         method = (m1 or m2).upper()
         if var in url_vars:
             core = url_vars[var]
             segs = [seg if seg in fixed_segments else '{param}' for seg in core.split('/')]
-            endpoints.add((method, '/' + '/'.join(segs)))
+            endpoint = '/' + '/'.join(segs)
+            endpoints.add((method, endpoint))
+            # print(f"Variable call: {m} {endpoint} (var: {var})")  # Debug
 
     return endpoints
 
@@ -400,54 +405,67 @@ def measure_api_coverage(
 
     print(f"\n🧪 API partly Endpoint Coverage: {covered}/{total} ({pct:.1f}%)")
 
-
-
-
-def extract_used_status_codes(test_file: str) -> Dict[tuple[str, str], Set[str]]:
-    # Читаем файл построчно
+def extract_used_status_codes(test_file: str) -> Dict[Tuple[str, str], Set[str]]:
+    # Read file line by line
     with open(test_file, encoding='utf-8') as f:
         lines = f.read().splitlines()
 
-    # Регулярное выражение для поиска вызовов requests
+    # Pattern for HTTP calls (requests or session)
     call_re = re.compile(
-        r'requests\.(get|post|put|delete)\s*\(\s*f?["\']\{BASE_URL\}/([^"\'\?]+?)(?:\?[^"\']*)?["\']',
+        r'(?:requests|session)\.(get|post|put|delete)\s*\(\s*f?["\']'
+        r'(?:\{?BASE_URL\}?/)?([^"\'\?]+?)(?:\?[^"\']*)?["\']\s*(?:,.*)?\)',
         re.IGNORECASE
     )
-    # Регулярное выражение для поиска утверждений статус-кодов
-    assert_re = re.compile(r'assert\s+(?P<var>\w+)\.status_code\s*==\s*(?P<code>\d{3})')
+    # Pattern for assertions (single value or array)
+    assert_re = re.compile(
+        r'assert\s+(?P<var>\w+)\.status_code\s*(?:==\s*(?P<single_code>\d{3})|in\s*\[(?P<array_codes>[\d,\s]+)\])',
+        re.IGNORECASE
+    )
 
-    # Словарь для хранения результатов
-    used_status_codes: Dict[tuple[str, str], Set[str]] = {}
+    # Dictionary to store results
+    used_status_codes: Dict[Tuple[str, str], Set[str]] = {}
 
-    # Фиксированные сегменты пути (не заменяются на {param})
-    fixed_segments = {'pet', 'store', 'order', 'user', 'findByStatus', 'uploadImage', 'inventory', 'login', 'logout', 'createWithArray', 'createWithList'}
+    # Fixed path segments
+    fixed_segments = {
+        'pet', 'store', 'order', 'user', 'findByStatus', 'uploadImage',
+        'inventory', 'login', 'logout', 'createWithArray', 'createWithList'
+    }
 
-    # Проходим по строкам файла
+    # Track the last HTTP call to associate with assertions
+    last_call = None
+
+    # Process lines
     for idx, line in enumerate(lines):
-        # Ищем вызов HTTP
+        # Look for HTTP call
         call_match = call_re.search(line)
         if call_match:
-            method = call_match.group(1).upper()  # Например, "POST"
-            raw_path = call_match.group(2)        # Например, "pet" или "pet/9999"
+            method = call_match.group(1).upper()  # e.g., "POST"
+            raw_path = call_match.group(2).strip('/')  # e.g., "pet" or "pet/9999"
 
-            # Нормализуем путь
+            # Normalize path
             segs = raw_path.split('/')
             norm_segs = [seg if seg in fixed_segments else '{param}' for seg in segs]
-            norm_path = '/' + '/'.join(norm_segs)  # Например, "/pet" или "/pet/{param}"
+            norm_path = '/' + '/'.join(norm_segs)  # e.g., "/pet" or "/pet/{param}"
+            last_call = (method, norm_path, idx)  # Store call with line index
+            continue
 
-            # Ищем утверждение в следующей или через одну строке
-            for offset in (1, 2):
-                if idx + offset < len(lines):
-                    assert_match = assert_re.search(lines[idx + offset])
-                    if assert_match:
-                        code = assert_match.group('code')  # Например, "200"
-                        # Добавляем результат в словарь
-                        key = (method, norm_path)
-                        used_status_codes.setdefault(key, set()).add(code)
-                        break  # Нашли утверждение, дальше не ищем
+        # Look for assertion if we have a recent HTTP call
+        if last_call:
+            assert_match = assert_re.search(line)
+            if assert_match and idx <= last_call[2] + 2:  # Check within 2 lines
+                var = assert_match.group('var')
+                key = (last_call[0], last_call[1])  # (method, norm_path)
+
+                # Handle single status code
+                if single_code := assert_match.group('single_code'):
+                    used_status_codes.setdefault(key, set()).add(single_code)
+                # Handle array of status codes
+                elif array_codes := assert_match.group('array_codes'):
+                    # Extract numbers from array (e.g., "200, 405" -> ["200", "405"])
+                    codes = [code.strip() for code in array_codes.split(',') if code.strip().isdigit()]
+                    used_status_codes.setdefault(key, set()).update(codes)
 
     return used_status_codes
-
 
 
 def extract_openapi_responses(spec: dict) -> Dict[Tuple[str, str], Set[str]]:
@@ -847,7 +865,7 @@ if __name__ == "__main__":
 
 
         # Долго, но надежно
-        # names = extract_test_names(TEST_FILE)
-        # detect_flaky_tests(names)
+        names = extract_test_names(TEST_FILE)
+        detect_flaky_tests(names)
 
         print("\n"*3)

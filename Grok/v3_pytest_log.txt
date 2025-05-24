@@ -1,0 +1,37 @@
+FFF..FFFFFF.F.F.F.FF..FF.FF.F.F..FFFFF.F...F.FFFFFF.F..                                                                                                                                          [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Grok/v3_main.py::test_post_pet_method_not_allowed - assert 200 == 405
+FAILED Grok/v3_main.py::test_post_pet_invalid_data - assert 500 == 405
+FAILED Grok/v3_main.py::test_post_pet_missing_api_key - assert 200 == 405
+FAILED Grok/v3_main.py::test_get_pet_by_id_invalid_id - assert 404 == 400
+FAILED Grok/v3_main.py::test_put_pet_method_not_allowed - assert 200 == 405
+FAILED Grok/v3_main.py::test_put_pet_invalid_data - assert 500 == 405
+FAILED Grok/v3_main.py::test_put_pet_missing_api_key - assert 200 == 405
+FAILED Grok/v3_main.py::test_put_pet_not_found - assert 200 == 405
+FAILED Grok/v3_main.py::test_delete_pet_valid - NameError: name 'TIMOUT' is not defined
+FAILED Grok/v3_main.py::test_delete_pet_invalid_id - assert 404 == 400
+FAILED Grok/v3_main.py::test_get_pet_find_by_status_invalid - assert 200 == 400
+FAILED Grok/v3_main.py::test_get_pet_find_by_tags_invalid - assert 200 == 400
+FAILED Grok/v3_main.py::test_post_pet_upload_image_invalid_id - assert 404 == 200
+FAILED Grok/v3_main.py::test_post_pet_by_id_method_not_allowed - assert 415 == 405
+FAILED Grok/v3_main.py::test_post_store_order_invalid_data - assert 500 == 400
+FAILED Grok/v3_main.py::test_get_store_order_by_id_valid - assert 404 == 200
+FAILED Grok/v3_main.py::test_get_store_order_by_id_invalid_id - assert 404 == 400
+FAILED Grok/v3_main.py::test_delete_store_order_valid - assert 404 == 400
+FAILED Grok/v3_main.py::test_delete_store_order_invalid_id - assert 404 == 400
+FAILED Grok/v3_main.py::test_post_user_invalid_data - assert 500 == 400
+FAILED Grok/v3_main.py::test_get_user_by_name_invalid_id - assert 404 == 400
+FAILED Grok/v3_main.py::test_put_user_valid - assert 200 == 400
+FAILED Grok/v3_main.py::test_put_user_not_found - assert 200 == 404
+FAILED Grok/v3_main.py::test_put_user_invalid_id - assert 200 == 400
+FAILED Grok/v3_main.py::test_delete_user_valid - assert 200 == 400
+FAILED Grok/v3_main.py::test_delete_user_invalid_id - assert 404 == 400
+FAILED Grok/v3_main.py::test_get_user_login_invalid_credentials - assert 200 == 400
+FAILED Grok/v3_main.py::test_crud_pet_flow - assert 200 == 405
+FAILED Grok/v3_main.py::test_crud_store_order_flow - assert 404 == 200
+FAILED Grok/v3_main.py::test_crud_user_flow - assert 200 == 400
+FAILED Grok/v3_main.py::test_auth_and_access_flow - assert 200 == 405
+FAILED Grok/v3_main.py::test_rate_limit_pet_post - assert 200 in [405, 429]
+FAILED Grok/v3_main.py::test_large_payload_pet_post - assert 200 in [405, 413]
+FAILED Grok/v3_main.py::test_rate_limit_user_login - assert 200 in [400, 429]
+34 failed, 21 passed in 59.82s

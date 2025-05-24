@@ -1,0 +1,16 @@
+.FF....FFF..........FF......FF..FF....F....F......                                                                                                                                               [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Grok/v2_main.py::test_post_pet_invalid_data - assert 500 == 400
+FAILED Grok/v2_main.py::test_post_pet_missing_api_key - assert 200 == 401
+FAILED Grok/v2_main.py::test_put_pet_invalid_data - assert 500 == 400
+FAILED Grok/v2_main.py::test_put_pet_missing_api_key - assert 200 == 401
+FAILED Grok/v2_main.py::test_delete_pet_valid - assert 404 == 200
+FAILED Grok/v2_main.py::test_post_store_order_invalid_data - assert 500 == 400
+FAILED Grok/v2_main.py::test_get_store_order_by_id_valid - assert 404 == 200
+FAILED Grok/v2_main.py::test_post_user_invalid_data - assert 500 == 400
+FAILED Grok/v2_main.py::test_get_user_by_name_valid - assert 404 == 200
+FAILED Grok/v2_main.py::test_put_user_not_found - assert 200 == 404
+FAILED Grok/v2_main.py::test_delete_user_valid - assert 404 == 200
+FAILED Grok/v2_main.py::test_get_user_login_invalid_credentials - assert 200 == 400
+FAILED Grok/v2_main.py::test_auth_and_access_flow - assert 200 == 401
+13 failed, 37 passed in 67.99s (0:01:07)
