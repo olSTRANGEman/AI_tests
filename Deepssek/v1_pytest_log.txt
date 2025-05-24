@@ -1,0 +1,19 @@
+.F.FFF..F..F.FFF..FF..FFFFF.                                                                                                                                                                     [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v1_main.py::test_post_pet_invalid - assert 200 == 405
+FAILED Deepssek/v1_main.py::test_put_pet_invalid - assert 500 == 400
+FAILED Deepssek/v1_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED Deepssek/v1_main.py::test_get_pet_by_id_invalid - assert 404 == 400
+FAILED Deepssek/v1_main.py::test_delete_pet_invalid - assert 404 == 400
+FAILED Deepssek/v1_main.py::test_get_pet_find_by_status_invalid - assert 200 == 400
+FAILED Deepssek/v1_main.py::test_post_store_order_invalid - assert 500 == 400
+FAILED Deepssek/v1_main.py::test_get_store_order_valid - assert 404 == 200
+FAILED Deepssek/v1_main.py::test_get_store_order_invalid - assert 404 == 400
+FAILED Deepssek/v1_main.py::test_post_user_invalid - assert 200 == 400
+FAILED Deepssek/v1_main.py::test_get_user_valid - assert 404 == 200
+FAILED Deepssek/v1_main.py::test_login_user_invalid - assert 200 == 400
+FAILED Deepssek/v1_main.py::test_crud_pet_flow - assert 404 == 200
+FAILED Deepssek/v1_main.py::test_auth_and_access_flow - assert 404 == 401
+FAILED Deepssek/v1_main.py::test_rate_limit - assert 200 == 429
+FAILED Deepssek/v1_main.py::test_large_json_body - assert 200 == 413
+16 failed, 12 passed in 35.43s

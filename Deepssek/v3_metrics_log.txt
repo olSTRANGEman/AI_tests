@@ -1,0 +1,53 @@
+Style Score: 3.4/10
+
+📊 Результаты get_pass_fail_rate:
+🎯 Pass Rate: 7/9 (77.8%)
+API Endpoint Coverage: 4/20 (20.0%)
+
+Средний процент покрытия по endpoint: 30.0%
+Средний процент покрытия по разделам:
+  - pet: 14.6%
+  - store: 20.8%
+  - user: 50.0%
+
+🧪 API partly Endpoint Coverage: 8/20 (40.0%)
+❗ Незаявленные статус-коды: 2 / 9 (22.2%)
+
+✔️ Скорректировано (200==4xx / in [...]): 2 (22.2%)
+🟡 Подозрительных (4xx==200): 2 (22.2%)
+
+METHOD | PATH                     | Specification | Expected | Missing     | CovPct
+------ | ------------------------ | ------------- | -------- | ----------- | ------
+POST   | /pet                     | 405           | -        | 405         |    0.0%
+PUT    | /pet                     | 400,404,405   | -        | 400,404,405 |    0.0%
+GET    | /pet/findByStatus        | 200,400       | -        | 200,400     |    0.0%
+GET    | /pet/findByTags          | 200,400       | -        | 200,400     |    0.0%
+DELETE | /pet/{param}             | 400,404       | 401,404  | 400         |   50.0%
+GET    | /pet/{param}             | 200,400,404   | 200,404  | 400         |   66.7%
+POST   | /pet/{param}             | 405           | -        | 405         |    0.0%
+POST   | /pet/{param}/uploadImage | 200           | -        | 200         |    0.0%
+GET    | /store/inventory         | 200           | -        | 200         |    0.0%
+POST   | /store/order             | 200,400       | -        | 200,400     |    0.0%
+DELETE | /store/order/{param}     | 400,404       | 200,404  | 400         |   50.0%
+GET    | /store/order/{param}     | 200,400,404   | 200      | 400,404     |   33.3%
+POST   | /user                    | default       | -        | -           |  100.0%
+POST   | /user/createWithArray    | default       | -        | -           |  100.0%
+POST   | /user/createWithList     | default       | -        | -           |  100.0%
+GET    | /user/login              | 200,400       | -        | 200,400     |    0.0%
+GET    | /user/logout             | default       | -        | -           |  100.0%
+DELETE | /user/{param}            | 400,404       | -        | 400,404     |    0.0%
+GET    | /user/{param}            | 200,400,404   | -        | 200,400,404 |    0.0%
+PUT    | /user/{param}            | 400,404       | -        | 400,404     |    0.0%
+
+❗ Список незаявленных случаев:
+   - DELETE /store/order/{param}: получили 200, ожидали [400,404]
+   - DELETE /pet/{param}: получили 401, ожидали [400,404]
+
+✔️ Список скорректированных тестов:
+   - Deepssek/v3_main.py::test_post_pet_invalid
+   - Deepssek/v3_main.py::test_error_responses
+
+🟡 Список подозрительных тестов:
+   - Deepssek/v3_main.py::test_post_pet_valid
+   - Deepssek/v3_main.py::test_user_lifecycle
+⚠️ Flaky tests: ['test_put_pet_valid', 'test_store_order_flow', 'test_eventual_consistency']

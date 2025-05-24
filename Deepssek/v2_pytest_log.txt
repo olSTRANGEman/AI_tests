@@ -1,0 +1,8 @@
+.F..F.........F....F...F....                                                                                                                                                                     [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v2_main.py::test_post_pet_invalid - assert 200 == 500
+FAILED Deepssek/v2_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED Deepssek/v2_main.py::test_get_store_order_valid - assert 404 == 200
+FAILED Deepssek/v2_main.py::test_get_user_valid - assert 404 == 200
+FAILED Deepssek/v2_main.py::test_crud_pet_flow - assert 404 == 200
+5 failed, 23 passed in 24.86s

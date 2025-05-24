@@ -1,0 +1,7 @@
+FF..F..F.                                                                                                                                                                                        [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v3_main.py::test_post_pet_valid - AssertionError: assert 404 == 200
+FAILED Deepssek/v3_main.py::test_post_pet_invalid - assert 200 in [400, 500]
+FAILED Deepssek/v3_main.py::test_store_order_flow - assert 404 == 200
+FAILED Deepssek/v3_main.py::test_error_responses - assert 200 in [400, 500]
+4 failed, 5 passed, 1 warning in 26.06s

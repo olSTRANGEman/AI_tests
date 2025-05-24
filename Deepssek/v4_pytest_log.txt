@@ -1,0 +1,13 @@
+.F..........F.F.F..FF....FF.........FF......                                                                                                                                                     [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v4_main.py::test_post_pet_invalid - assert 200 in [400, 500]
+FAILED Deepssek/v4_main.py::test_update_pet_with_form - assert 404 in [200, 405]
+FAILED Deepssek/v4_main.py::test_delete_pet_valid - assert 404 == 200
+FAILED Deepssek/v4_main.py::test_delete_pet_unauthorized - assert 404 in [401, 403]
+FAILED Deepssek/v4_main.py::test_create_order_invalid - assert 200 in [400, 500]
+FAILED Deepssek/v4_main.py::test_get_order_valid - assert 404 == 200
+FAILED Deepssek/v4_main.py::test_create_user_valid - AssertionError: assert 404 == 200
+FAILED Deepssek/v4_main.py::test_create_user_invalid - assert 200 in [400, 500]
+FAILED Deepssek/v4_main.py::test_update_user_invalid - assert 200 in [400, 404]
+FAILED Deepssek/v4_main.py::test_delete_user_valid - assert 404 == 200
+10 failed, 34 passed, 1 warning in 56.88s
