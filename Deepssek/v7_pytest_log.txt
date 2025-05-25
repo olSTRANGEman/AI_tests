@@ -1,0 +1,29 @@
+.FF.FF...F..FFFFFF..FF.F..FFFF.FF..FF...F.FF..F........                                                                                                                                          [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v7_main.py::test_create_pet_missing_photo - assert 200 in [400, 405]
+FAILED Deepssek/v7_main.py::test_create_pet_invalid_id_type - assert 500 == 400
+FAILED Deepssek/v7_main.py::test_update_pet_invalid_id - assert 500 in [400, 404]
+FAILED Deepssek/v7_main.py::test_update_pet_nonexistent - assert 200 == 404
+FAILED Deepssek/v7_main.py::test_find_pets_by_status_invalid - assert 200 == 400
+FAILED Deepssek/v7_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED Deepssek/v7_main.py::test_get_pet_by_id_string - assert 404 == 400
+FAILED Deepssek/v7_main.py::test_get_pet_by_id_negative - assert 404 == 400
+FAILED Deepssek/v7_main.py::test_get_pet_by_id_nonexistent - assert 200 == 404
+FAILED Deepssek/v7_main.py::test_update_pet_form_valid - assert 404 == 200
+FAILED Deepssek/v7_main.py::test_update_pet_form_invalid_id - assert 404 in [400, 405]
+FAILED Deepssek/v7_main.py::test_delete_pet_valid - assert 404 == 200
+FAILED Deepssek/v7_main.py::test_delete_pet_unauthorized - assert 404 in [401, 403]
+FAILED Deepssek/v7_main.py::test_delete_pet_nonexistent - assert 200 == 404
+FAILED Deepssek/v7_main.py::test_create_order_invalid_pet_id - assert 500 == 400
+FAILED Deepssek/v7_main.py::test_create_order_missing_fields - assert 200 == 400
+FAILED Deepssek/v7_main.py::test_get_order_valid - assert 404 == 200
+FAILED Deepssek/v7_main.py::test_get_order_string_id - assert 404 == 400
+FAILED Deepssek/v7_main.py::test_delete_order_valid - assert 404 == 200
+FAILED Deepssek/v7_main.py::test_delete_order_invalid_id - assert 404 == 400
+FAILED Deepssek/v7_main.py::test_create_user_missing_username - assert 200 == 400
+FAILED Deepssek/v7_main.py::test_create_user_invalid_email - assert 200 == 400
+FAILED Deepssek/v7_main.py::test_login_invalid_credentials - assert 200 == 400
+FAILED Deepssek/v7_main.py::test_get_user_valid - assert 404 == 200
+FAILED Deepssek/v7_main.py::test_get_user_special_chars - assert 404 == 400
+FAILED Deepssek/v7_main.py::test_update_user_invalid - assert 200 in [400, 404]
+26 failed, 29 passed in 66.46s (0:01:06)

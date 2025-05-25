@@ -1,0 +1,30 @@
+FFFFF.FFF...F..F.FF..FFF...FFFFF....FFF...F..F..FF......                                                                                                                                         [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v6_main.py::test_post_pet_valid - AssertionError: assert 404 == 200
+FAILED Deepssek/v6_main.py::test_post_pet_invalid[data0-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_post_pet_invalid[data1-400] - assert 500 == 400
+FAILED Deepssek/v6_main.py::test_post_pet_invalid[data2-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_post_pet_invalid[data3-400] - assert 500 == 400
+FAILED Deepssek/v6_main.py::test_put_pet_invalid[data0-400] - assert 500 == 400
+FAILED Deepssek/v6_main.py::test_put_pet_invalid[data1-404] - assert 200 == 404
+FAILED Deepssek/v6_main.py::test_put_pet_invalid[data2-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_get_pet_by_status_empty - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_get_pet_by_id_invalid[invalid_id-400] - assert 404 == 400
+FAILED Deepssek/v6_main.py::test_update_pet_form_valid - assert 404 in [200, 405]
+FAILED Deepssek/v6_main.py::test_update_pet_form_invalid - assert 404 in [400, 405]
+FAILED Deepssek/v6_main.py::test_delete_pet_valid - assert 404 == 200
+FAILED Deepssek/v6_main.py::test_delete_pet_unauthorized - assert 404 in [401, 403]
+FAILED Deepssek/v6_main.py::test_delete_pet_invalid[invalid_id-400] - assert 404 == 400
+FAILED Deepssek/v6_main.py::test_create_order_invalid[data0-400] - assert 500 == 400
+FAILED Deepssek/v6_main.py::test_create_order_invalid[data1-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_create_order_invalid[data2-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_get_order_valid - assert 404 == 200
+FAILED Deepssek/v6_main.py::test_get_order_invalid[invalid_id-400] - assert 404 == 400
+FAILED Deepssek/v6_main.py::test_create_user_invalid[data0-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_create_user_invalid[data1-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_create_user_invalid[data2-400] - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_login_invalid - assert 200 == 400
+FAILED Deepssek/v6_main.py::test_get_user_invalid[invalid_user!-400] - assert 404 == 400
+FAILED Deepssek/v6_main.py::test_update_user_invalid - assert 200 in [400, 404]
+FAILED Deepssek/v6_main.py::test_delete_user_valid - assert 404 == 200
+27 failed, 29 passed, 2 warnings in 67.02s (0:01:07)

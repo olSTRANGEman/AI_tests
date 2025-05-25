@@ -1,0 +1,14 @@
+.F.F.F...FFF.F..F.....F.FF....                                                                                                                                                                   [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v5_main.py::test_post_pet_invalid[data0-400] - assert 200 == 400
+FAILED Deepssek/v5_main.py::test_post_pet_invalid[data2-400] - assert 200 == 400
+FAILED Deepssek/v5_main.py::test_put_pet_invalid_id - assert 500 in [400, 404]
+FAILED Deepssek/v5_main.py::test_get_pet_by_status_invalid - assert 200 == 400
+FAILED Deepssek/v5_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED Deepssek/v5_main.py::test_get_pet_by_id_invalid[invalid-400] - assert 404 == 400
+FAILED Deepssek/v5_main.py::test_update_pet_with_form - assert 404 in [200, 405]
+FAILED Deepssek/v5_main.py::test_delete_pet_unauthorized - assert 404 in [401, 403]
+FAILED Deepssek/v5_main.py::test_user_lifecycle - assert 404 == 200
+FAILED Deepssek/v5_main.py::test_create_user_invalid[data0-400] - assert 200 == 400
+FAILED Deepssek/v5_main.py::test_create_user_invalid[data1-500] - assert 200 == 500
+11 failed, 19 passed, 3 warnings in 51.99s

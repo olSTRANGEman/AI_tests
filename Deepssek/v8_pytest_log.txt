@@ -1,0 +1,33 @@
+.FFF.FF.FFF...F...F.F.FFFFF..FF.F..F.F.FF...F....FF.F..FFF                                                                                                                                       [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Deepssek/v8_main.py::test_post_pet_missing_required_fields - assert 200 == 400
+FAILED Deepssek/v8_main.py::test_post_pet_invalid_id_format - assert 500 == 400
+FAILED Deepssek/v8_main.py::test_post_pet_invalid_status - assert 200 == 400
+FAILED Deepssek/v8_main.py::test_put_pet_not_existing - assert 200 == 404
+FAILED Deepssek/v8_main.py::test_put_pet_invalid_data - assert 500 == 400
+FAILED Deepssek/v8_main.py::test_get_pet_by_id_string - assert 404 == 400
+FAILED Deepssek/v8_main.py::test_get_pet_by_id_negative - assert 404 == 400
+FAILED Deepssek/v8_main.py::test_get_pet_by_id_not_found - assert 200 == 404
+FAILED Deepssek/v8_main.py::test_find_pets_by_status_invalid - assert 200 == 400
+FAILED Deepssek/v8_main.py::test_update_pet_form_invalid_id - assert 404 == 405
+FAILED Deepssek/v8_main.py::test_upload_pet_image_invalid_id - assert 404 == 405
+FAILED Deepssek/v8_main.py::test_delete_pet_unauthorized - assert 200 == 401
+FAILED Deepssek/v8_main.py::test_delete_pet_invalid_id - assert 404 == 400
+FAILED Deepssek/v8_main.py::test_delete_pet_not_found - assert 200 == 404
+FAILED Deepssek/v8_main.py::test_delete_pet_twice - assert 200 == 404
+FAILED Deepssek/v8_main.py::test_pet_lifecycle - assert 404 == 200
+FAILED Deepssek/v8_main.py::test_create_order_invalid_pet_id - assert 500 == 400
+FAILED Deepssek/v8_main.py::test_create_order_negative_quantity - assert 200 == 400
+FAILED Deepssek/v8_main.py::test_get_order_invalid_id - assert 404 == 400
+FAILED Deepssek/v8_main.py::test_delete_order_invalid_id - assert 404 == 400
+FAILED Deepssek/v8_main.py::test_store_order_lifecycle - assert 404 == 200
+FAILED Deepssek/v8_main.py::test_create_user_duplicate - assert 200 == 400
+FAILED Deepssek/v8_main.py::test_create_user_invalid_email - assert 200 == 400
+FAILED Deepssek/v8_main.py::test_login_invalid - assert 200 == 400
+FAILED Deepssek/v8_main.py::test_update_user_not_found - assert 200 == 404
+FAILED Deepssek/v8_main.py::test_delete_user_valid - assert 404 == 200
+FAILED Deepssek/v8_main.py::test_user_lifecycle - assert 404 == 200
+FAILED Deepssek/v8_main.py::test_error_handling - assert 415 in [400, 500]
+FAILED Deepssek/v8_main.py::test_data_persistence - assert 404 == 200
+FAILED Deepssek/v8_main.py::test_security - assert 200 in [401, 403, 404]
+30 failed, 28 passed in 102.41s (0:01:42)

@@ -17,7 +17,7 @@ from pylint.reporters.text import TextReporter
 # pip install radon pylint requests pyyaml pytest-json-report
 
 # Файл с тестами (обязательно .py)
-TEST_FILEs = ["Deepssek/v4_main.py"]
+TEST_FILEs = ["Deepssek/v8_main.py"]
 
 # Базовый URL для извлечения эндпоинтов
 BASE_URL = "https://petstore.swagger.io/v2"

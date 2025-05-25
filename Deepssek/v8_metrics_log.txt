@@ -1,0 +1,72 @@
+🎯 Pass Rate: 44/58 (75.9%)
+API Endpoint Coverage: 10/20 (50.0%)
+
+Средний процент покрытия по endpoint: 61.7%
+Средний процент покрытия по разделам:
+  - pet: 39.6%
+  - store: 100.0%
+  - user: 64.6%
+
+🧪 API partly Endpoint Coverage: 16/20 (80.0%)
+❗ Незаявленные статус-коды: 15 / 58 (25.9%)
+
+✔️ Скорректировано (200==4xx / in [...]): 10 (17.2%)
+🟡 Подозрительных (4xx==200): 3 (5.2%)
+
+METHOD | PATH                     | Specification | Expected        | Missing | CovPct
+------ | ------------------------ | ------------- | --------------- | ------- | ------
+POST   | /pet                     | 405           | 200,400,401,500 | 405     |    0.0%
+PUT    | /pet                     | 400,404,405   | 200,400,404     | 405     |   66.7%
+GET    | /pet/findByStatus        | 200,400       | 200,400         | -       |  100.0%
+GET    | /pet/findByTags          | 200,400       | -               | 200,400 |    0.0%
+DELETE | /pet/{param}             | 400,404       | 401,403,404     | 400     |   50.0%
+GET    | /pet/{param}             | 200,400,404   | 200,400,404     | -       |  100.0%
+POST   | /pet/{param}             | 405           | -               | 405     |    0.0%
+POST   | /pet/{param}/uploadImage | 200           | 405             | 200     |    0.0%
+GET    | /store/inventory         | 200           | 200             | -       |  100.0%
+POST   | /store/order             | 200,400       | 200,400         | -       |  100.0%
+DELETE | /store/order/{param}     | 400,404       | 200,400,404     | -       |  100.0%
+GET    | /store/order/{param}     | 200,400,404   | 200,400,404     | -       |  100.0%
+POST   | /user                    | default       | 200,400         | -       |  100.0%
+POST   | /user/createWithArray    | default       | 200             | -       |  100.0%
+POST   | /user/createWithList     | default       | 200             | -       |  100.0%
+GET    | /user/login              | 200,400       | -               | 200,400 |    0.0%
+GET    | /user/logout             | default       | 200             | -       |  100.0%
+DELETE | /user/{param}            | 400,404       | 200,404         | 400     |   50.0%
+GET    | /user/{param}            | 200,400,404   | 200,404         | 400     |   66.7%
+PUT    | /user/{param}            | 400,404       | -               | 400,404 |    0.0%
+
+❗ Список незаявленных случаев:
+   - POST /pet: получили 200, ожидали [405]
+   - POST /pet: получили 400, ожидали [405]
+   - POST /pet: получили 500, ожидали [405]
+   - POST /pet: получили 401, ожидали [405]
+   - PUT /pet: получили 200, ожидали [400,404,405]
+   - POST /pet/{param}/uploadImage: получили 405, ожидали [200]
+   - DELETE /store/order/{param}: получили 200, ожидали [400,404]
+   - POST /user: получили 200, ожидали [-]
+   - POST /user: получили 400, ожидали [-]
+   - POST /user/createWithArray: получили 200, ожидали [-]
+   - POST /user/createWithList: получили 200, ожидали [-]
+   - GET /user/logout: получили 200, ожидали [-]
+   - DELETE /user/{param}: получили 200, ожидали [400,404]
+   - DELETE /pet/{param}: получили 403, ожидали [400,404]
+   - DELETE /pet/{param}: получили 401, ожидали [400,404]
+
+✔️ Список скорректированных тестов:
+   - Deepssek/v8_main.py::test_post_pet_missing_required_fields
+   - Deepssek/v8_main.py::test_post_pet_invalid_status
+   - Deepssek/v8_main.py::test_put_pet_not_existing
+   - Deepssek/v8_main.py::test_find_pets_by_status_invalid
+   - Deepssek/v8_main.py::test_delete_pet_unauthorized
+   - Deepssek/v8_main.py::test_create_order_negative_quantity
+   - Deepssek/v8_main.py::test_create_user_duplicate
+   - Deepssek/v8_main.py::test_create_user_invalid_email
+   - Deepssek/v8_main.py::test_login_invalid
+   - Deepssek/v8_main.py::test_update_user_not_found
+
+🟡 Список подозрительных тестов:
+   - Deepssek/v8_main.py::test_get_order_valid
+   - Deepssek/v8_main.py::test_store_order_lifecycle
+   - Deepssek/v8_main.py::test_data_persistence
+⚠️ Flaky tests: ['test_get_pet_by_id_valid', 'test_update_pet_form_valid', 'test_delete_pet_valid', 'test_delete_pet_twice', 'test_get_order_valid', 'test_delete_order_valid', 'test_delete_user_valid', 'test_data_persistence', 'test_security']
