@@ -1,0 +1,24 @@
+FFF.FFF..F.F..FFF.F.FFF.F.F.FFF.F                                                                                                                                                                [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED GPT/v1_main.py::test_post_pet_valid - assert 415 == 200
+FAILED GPT/v1_main.py::test_post_pet_missing_name - assert 415 == 400
+FAILED GPT/v1_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED GPT/v1_main.py::test_update_pet_put_valid - assert 415 == 200
+FAILED GPT/v1_main.py::test_update_pet_put_invalid_id - assert 415 == 400
+FAILED GPT/v1_main.py::test_delete_pet_valid - assert 404 == 200
+FAILED GPT/v1_main.py::test_find_pets_by_status_invalid - assert 200 == 400
+FAILED GPT/v1_main.py::test_upload_pet_image_invalid_pet - assert 200 == 404
+FAILED GPT/v1_main.py::test_place_order_valid - assert 415 == 200
+FAILED GPT/v1_main.py::test_place_order_missing_field - assert 415 == 400
+FAILED GPT/v1_main.py::test_get_order_by_id_valid - assert 404 == 200
+FAILED GPT/v1_main.py::test_delete_order_valid - assert 404 == 200
+FAILED GPT/v1_main.py::test_create_user_valid - assert 415 == 200
+FAILED GPT/v1_main.py::test_create_user_missing_username - assert 415 == 400
+FAILED GPT/v1_main.py::test_create_users_with_array_valid - assert 415 == 200
+FAILED GPT/v1_main.py::test_login_user_invalid - assert 200 == 400
+FAILED GPT/v1_main.py::test_get_user_by_name_valid - assert 404 == 200
+FAILED GPT/v1_main.py::test_update_user_valid - assert 415 == 200
+FAILED GPT/v1_main.py::test_update_user_not_found - assert 415 == 404
+FAILED GPT/v1_main.py::test_delete_user_valid - assert 404 == 200
+FAILED GPT/v1_main.py::test_crud_pet_flow - assert 415 == 200
+21 failed, 12 passed in 32.88s

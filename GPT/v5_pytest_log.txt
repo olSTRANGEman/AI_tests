@@ -1,0 +1,8 @@
+...F...........F..........F...FF..................                                                                                                                                               [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED GPT/v5_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED GPT/v5_main.py::test_delete_pet_valid - assert 404 == 200
+FAILED GPT/v5_main.py::test_delete_order_valid - assert 404 == 200
+FAILED GPT/v5_main.py::test_create_user_missing_username - assert 415 == 400
+FAILED GPT/v5_main.py::test_create_user_invalid_id - assert 500 == 400
+5 failed, 45 passed in 67.00s (0:01:06)

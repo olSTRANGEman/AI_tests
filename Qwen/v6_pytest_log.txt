@@ -1,0 +1,51 @@
+.FF.FFF.F..F.FFFFFF.F.F.F.F.FFFFs.FF.FFF...FF..FFFFF..FFFFFFFFFFFFFFF.....                                                                                                                       [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Qwen/v6_main.py::test_post_pet_missing_name - assert 200 == 400
+FAILED Qwen/v6_main.py::test_post_pet_invalid_status - assert 200 == 400
+FAILED Qwen/v6_main.py::test_put_pet_invalid_id - assert 500 == 400
+FAILED Qwen/v6_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED Qwen/v6_main.py::test_get_pet_by_invalid_id - assert 404 == 400
+FAILED Qwen/v6_main.py::test_delete_pet_valid - assert 404 == 204
+FAILED Qwen/v6_main.py::test_get_pets_by_invalid_status - assert 200 == 400
+FAILED Qwen/v6_main.py::test_get_pets_by_missing_tags - assert 200 == 400
+FAILED Qwen/v6_main.py::test_upload_pet_photo_valid - assert 415 == 200
+FAILED Qwen/v6_main.py::test_upload_pet_missing_file - assert 404 == 400
+FAILED Qwen/v6_main.py::test_post_user_valid - AssertionError: assert 'username' in {'code': 200, 'message': '3856207', 'type': 'unknown'}
+FAILED Qwen/v6_main.py::test_post_user_duplicate_username - assert 200 == 400
+FAILED Qwen/v6_main.py::test_get_user_by_username_valid - KeyError: 'username'
+FAILED Qwen/v6_main.py::test_delete_user_valid - KeyError: 'username'
+FAILED Qwen/v6_main.py::test_login_invalid_credentials - assert 200 == 400
+FAILED Qwen/v6_main.py::test_post_order_invalid_pet_id - assert 200 == 400
+FAILED Qwen/v6_main.py::test_delete_order_valid - assert 404 == 200
+FAILED Qwen/v6_main.py::test_crud_pet_flow - assert 404 == 200
+FAILED Qwen/v6_main.py::test_crud_user_flow - KeyError: 'username'
+FAILED Qwen/v6_main.py::test_auth_and_access_flow - assert 200 in [401, 403]
+FAILED Qwen/v6_main.py::test_large_payload - assert 200 in [413, 414, 411]
+FAILED Qwen/v6_main.py::test_put_pet_missing_id - assert 200 == 400
+FAILED Qwen/v6_main.py::test_put_pet_missing_name - assert 200 == 400
+FAILED Qwen/v6_main.py::test_delete_pet_missing_id - assert 405 == 404
+FAILED Qwen/v6_main.py::test_post_duplicate_pet_id - assert 200 == 400
+FAILED Qwen/v6_main.py::test_update_nonexistent_pet - assert 200 == 404
+FAILED Qwen/v6_main.py::test_create_order_missing_pet_id - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_order_invalid_quantity - assert 200 == 400
+FAILED Qwen/v6_main.py::test_update_order_valid - assert 405 == 200
+FAILED Qwen/v6_main.py::test_update_order_invalid_status - assert 405 == 400
+FAILED Qwen/v6_main.py::test_create_user_missing_username - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_user_missing_email - assert 200 == 400
+FAILED Qwen/v6_main.py::test_update_user_valid - KeyError: 'username'
+FAILED Qwen/v6_main.py::test_create_pet_invalid_category - assert 500 == 400
+FAILED Qwen/v6_main.py::test_create_pet_missing_category - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_pet_invalid_photo_url - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_pet_missing_photo_url - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_pet_invalid_tags - assert 500 == 400
+FAILED Qwen/v6_main.py::test_create_pet_missing_tags - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_order_missing_ship_date - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_order_invalid_complete_flag - assert 500 == 400
+FAILED Qwen/v6_main.py::test_create_order_missing_status - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_order_invalid_id - assert 500 == 400
+FAILED Qwen/v6_main.py::test_create_user_invalid_password - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_user_invalid_phone - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_user_missing_first_name - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_user_missing_last_name - assert 200 == 400
+FAILED Qwen/v6_main.py::test_create_user_invalid_status - assert 200 == 400
+48 failed, 25 passed, 1 skipped in 105.21s (0:01:45)

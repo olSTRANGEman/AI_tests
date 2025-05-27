@@ -1,0 +1,22 @@
+.FF.FFF.F..FFFFFF.FFFFFFF.                                                                                                                                                                       [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Qwen/v1_main.py::test_post_pet_missing_name - assert 200 == 400
+FAILED Qwen/v1_main.py::test_post_pet_invalid_status - assert 200 == 400
+FAILED Qwen/v1_main.py::test_put_pet_invalid_id - assert 500 == 400
+FAILED Qwen/v1_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED Qwen/v1_main.py::test_get_pet_by_invalid_id - assert 404 == 400
+FAILED Qwen/v1_main.py::test_delete_pet_valid - assert 200 == 204
+FAILED Qwen/v1_main.py::test_get_pets_by_invalid_status - assert 200 == 400
+FAILED Qwen/v1_main.py::test_post_user_valid - KeyError: 'username'
+FAILED Qwen/v1_main.py::test_post_user_duplicate_username - assert 200 == 400
+FAILED Qwen/v1_main.py::test_get_user_by_id_valid - KeyError: 'id'
+FAILED Qwen/v1_main.py::test_put_user_valid - assert 405 == 200
+FAILED Qwen/v1_main.py::test_delete_user_valid - KeyError: 'id'
+FAILED Qwen/v1_main.py::test_post_order_invalid_pet_id - assert 200 == 400
+FAILED Qwen/v1_main.py::test_get_order_by_id_valid - assert 404 == 200
+FAILED Qwen/v1_main.py::test_delete_order_valid - assert 404 == 200
+FAILED Qwen/v1_main.py::test_crud_pet_flow - assert 404 == 204
+FAILED Qwen/v1_main.py::test_crud_user_flow - KeyError: 'id'
+FAILED Qwen/v1_main.py::test_large_payload - assert 200 in [413, 414, 411]
+FAILED Qwen/v1_main.py::test_rate_limiting - AssertionError: Rate limiting not detected
+19 failed, 7 passed in 106.35s (0:01:46)

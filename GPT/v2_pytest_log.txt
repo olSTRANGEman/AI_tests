@@ -1,0 +1,10 @@
+..F............F.F.F.......F..FF...                                                                                                                                                              [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED GPT/v2_main.py::test_get_pet_by_id_valid - assert 404 == 200
+FAILED GPT/v2_main.py::test_get_order_by_id_valid - assert 404 == 200
+FAILED GPT/v2_main.py::test_delete_order_valid - assert 404 == 200
+FAILED GPT/v2_main.py::test_create_user_valid - KeyError: 'username'
+FAILED GPT/v2_main.py::test_update_user_valid - assert 415 == 200
+FAILED GPT/v2_main.py::test_crud_pet_flow - assert 404 == 200
+FAILED GPT/v2_main.py::test_auth_and_access_flow - assert 200 in (401, 403, 500)
+7 failed, 28 passed in 53.10s

@@ -1,0 +1,11 @@
+.......F.F.........F.....F...F...FF..F....                                                                                                                                                       [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED GPT/v3_main.py::test_find_pets_by_status_invalid - assert 200 == 400
+FAILED GPT/v3_main.py::test_find_pets_by_tags_invalid - assert 200 == 400
+FAILED GPT/v3_main.py::test_place_order_missing_field - assert 415 == 400
+FAILED GPT/v3_main.py::test_create_user_missing_username - assert 415 == 400
+FAILED GPT/v3_main.py::test_login_user_invalid - assert 200 == 400
+FAILED GPT/v3_main.py::test_update_user_valid - assert 415 in (200, 400, 404)
+FAILED GPT/v3_main.py::test_update_user_not_found - assert 415 == 404
+FAILED GPT/v3_main.py::test_crud_pet_flow - assert 404 == 200
+8 failed, 34 passed in 57.56s

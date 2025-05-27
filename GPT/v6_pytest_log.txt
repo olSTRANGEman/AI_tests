@@ -1,0 +1,13 @@
+.........F..F...FF...........F..F...FF.....F.......F....                                                                                                                                         [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED GPT/v6_main.py::test_find_pets_by_status_invalid - assert 200 == 400
+FAILED GPT/v6_main.py::test_find_pets_by_tags[invalid] - assert 200 == 400
+FAILED GPT/v6_main.py::test_update_pet_with_form - assert 200 == 415
+FAILED GPT/v6_main.py::test_delete_pet_valid - assert 404 == 200
+FAILED GPT/v6_main.py::test_get_order_by_id_valid - assert 404 == 200
+FAILED GPT/v6_main.py::test_delete_order_valid - assert 404 == 200
+FAILED GPT/v6_main.py::test_create_user_missing_username - assert 415 == 400
+FAILED GPT/v6_main.py::test_create_user_invalid_id - assert 500 == 400
+FAILED GPT/v6_main.py::test_get_user_by_name_valid - assert 404 == 200
+FAILED GPT/v6_main.py::test_crud_pet_flow - assert 404 == 200
+10 failed, 46 passed in 71.50s (0:01:11)

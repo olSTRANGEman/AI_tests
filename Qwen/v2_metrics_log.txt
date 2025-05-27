@@ -1,0 +1,80 @@
+Style Score: 5.4/10
+
+📊 Результаты get_pass_fail_rate:
+🎯 Pass Rate: 14/67 (20.9%)
+API Endpoint Coverage: 9/20 (45.0%)
+
+Средний процент покрытия по endpoint: 60.0%
+Средний процент покрытия по разделам:
+  - pet: 39.6%
+  - store: 79.2%
+  - user: 70.8%
+
+🧪 API partly Endpoint Coverage: 17/20 (85.0%)
+❗ Незаявленные статус-коды: 21 / 67 (31.3%)
+
+✔️ Скорректировано (200==4xx / in [...]): 2 (3.0%)
+🟡 Подозрительных (4xx==200): 9 (13.4%)
+
+METHOD | PATH                     | Specification | Expected            | Missing | CovPct
+------ | ------------------------ | ------------- | ------------------- | ------- | ------
+POST   | /pet                     | 405           | 200,400,411,413,414 | 405     |    0.0%
+PUT    | /pet                     | 400,404,405   | 200,400,404         | 405     |   66.7%
+GET    | /pet/findByStatus        | 200,400       | 200,400             | -       |  100.0%
+GET    | /pet/findByTags          | 200,400       | -                   | 200,400 |    0.0%
+DELETE | /pet/{param}             | 400,404       | 200,404             | 400     |   50.0%
+GET    | /pet/{param}             | 200,400,404   | 200,400,404         | -       |  100.0%
+POST   | /pet/{param}             | 405           | 200,400             | 405     |    0.0%
+POST   | /pet/{param}/uploadImage | 200           | -                   | 200     |    0.0%
+GET    | /store/inventory         | 200           | 200                 | -       |  100.0%
+POST   | /store/order             | 200,400       | 200,400             | -       |  100.0%
+DELETE | /store/order/{param}     | 400,404       | 404                 | 400     |   50.0%
+GET    | /store/order/{param}     | 200,400,404   | 200,404             | 400     |   66.7%
+POST   | /user                    | default       | 200,400             | -       |  100.0%
+POST   | /user/createWithArray    | default       | -                   | -       |  100.0%
+POST   | /user/createWithList     | default       | -                   | -       |  100.0%
+GET    | /user/login              | 200,400       | 200,400             | -       |  100.0%
+GET    | /user/logout             | default       | 200                 | -       |  100.0%
+DELETE | /user/{param}            | 400,404       | 200                 | 400,404 |    0.0%
+GET    | /user/{param}            | 200,400,404   | 200,404             | 400     |   66.7%
+PUT    | /user/{param}            | 400,404       | -                   | 400,404 |    0.0%
+
+❗ Список незаявленных случаев:
+   - POST /pet: получили 400, ожидали [405]
+   - POST /pet: получили 414, ожидали [405]
+   - POST /pet: получили 413, ожидали [405]
+   - POST /pet: получили 411, ожидали [405]
+   - POST /pet: получили 200, ожидали [405]
+   - PUT /pet: получили 200, ожидали [400,404,405]
+   - DELETE /pet/{param}: получили 200, ожидали [400,404]
+   - POST /pet/{param}: получили 200, ожидали [405]
+   - POST /pet/{param}: получили 400, ожидали [405]
+   - POST /user: получили 200, ожидали [-]
+   - POST /user: получили 400, ожидали [-]
+   - DELETE /user/{param}: получили 200, ожидали [400,404]
+   - GET /pet/{param}/{param}: получили 404, ожидали [-]
+   - DELETE /pet: получили 404, ожидали [-]
+   - GET /pet: получили 200, ожидали [-]
+   - GET /user: получили 200, ожидали [-]
+   - GET /store/order: получили 200, ожидали [-]
+   - PUT /store/order: получили 200, ожидали [-]
+   - PUT /store/order: получили 400, ожидали [-]
+   - PUT /user: получили 200, ожидали [-]
+   - GET /user/logout: получили 200, ожидали [-]
+
+✔️ Список скорректированных тестов:
+   - Qwen/v2_main.py::test_get_pets_by_invalid_status
+   - Qwen/v2_main.py::test_login_invalid_credentials
+
+🟡 Список подозрительных тестов:
+   - Qwen/v2_main.py::test_post_pet_valid
+   - Qwen/v2_main.py::test_post_user_valid
+   - Qwen/v2_main.py::test_post_user_duplicate_username
+   - Qwen/v2_main.py::test_crud_pet_flow
+   - Qwen/v2_main.py::test_crud_user_flow
+   - Qwen/v2_main.py::test_auth_and_access_flow
+   - Qwen/v2_main.py::test_get_all_pets
+   - Qwen/v2_main.py::test_get_all_users
+   - Qwen/v2_main.py::test_get_all_orders
+⚠️ Flaky tests: ['None']
+
