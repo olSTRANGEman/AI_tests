@@ -1,0 +1,15 @@
+.F.FFF...F.F...F.F.....F...............FF.............F..                                                                                                                                        [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Gemini/v5_main.py::test_post_pet_method_not_allowed_405 - assert 500 == 405
+FAILED Gemini/v5_main.py::test_put_pet_not_found_404 - assert 200 == 404
+FAILED Gemini/v5_main.py::test_put_pet_bad_request_missing_fields_400 - assert 200 == 400
+FAILED Gemini/v5_main.py::test_put_pet_method_not_allowed_405 - assert 500 == 405
+FAILED Gemini/v5_main.py::test_get_pet_by_status_bad_request_400 - assert 200 == 400
+FAILED Gemini/v5_main.py::test_get_pet_by_tags_bad_request_400 - assert 200 == 400
+FAILED Gemini/v5_main.py::test_post_update_pet_form_data_success_200 - assert 404 == 200
+FAILED Gemini/v5_main.py::test_delete_pet_success_200 - assert 404 == 200
+FAILED Gemini/v5_main.py::test_post_store_order_bad_request_400 - assert 200 == 400
+FAILED Gemini/v5_main.py::test_put_user_not_found_404 - assert 200 == 404
+FAILED Gemini/v5_main.py::test_put_user_bad_request_400 - assert 500 == 400
+FAILED Gemini/v5_main.py::test_crud_pet_flow - AssertionError: assert 404 == 200
+12 failed, 45 passed in 88.81s (0:01:28)

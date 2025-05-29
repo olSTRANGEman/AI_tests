@@ -1,0 +1,20 @@
+.F.FF......F...F...F................FFF..FF....F..F.FFFF..                                                                                                                                       [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Gemini/v2_main.py::test_post_add_pet_invalid_input - assert 400 == 500
+FAILED Gemini/v2_main.py::test_put_update_pet_not_found - assert 200 == 404
+FAILED Gemini/v2_main.py::test_put_update_pet_invalid_id - assert 500 == 400
+FAILED Gemini/v2_main.py::test_get_pet_by_status_invalid - AssertionError: assert [{'category':...'], ...}, ...] == []
+FAILED Gemini/v2_main.py::test_post_update_pet_with_form_data_success - assert 404 == 200
+FAILED Gemini/v2_main.py::test_post_store_order_invalid - assert 500 == 400
+FAILED Gemini/v2_main.py::test_put_update_user_not_found - assert 200 == 404
+FAILED Gemini/v2_main.py::test_put_update_user_invalid_input - assert 500 == 400
+FAILED Gemini/v2_main.py::test_delete_user_success - assert 404 == 200
+FAILED Gemini/v2_main.py::test_crud_pet_flow - assert 404 == 200
+FAILED Gemini/v2_main.py::test_auth_and_access_flow - assert 404 == 200
+FAILED Gemini/v2_main.py::test_multiple_pet_creations_and_deletions[1] - assert 404 == 200
+FAILED Gemini/v2_main.py::test_multiple_pet_creations_and_deletions[4] - assert 404 == 200
+FAILED Gemini/v2_main.py::test_multiple_user_creations_and_deletions[1] - assert 404 == 200
+FAILED Gemini/v2_main.py::test_multiple_user_creations_and_deletions[2] - assert 404 == 200
+FAILED Gemini/v2_main.py::test_multiple_user_creations_and_deletions[3] - assert 404 == 200
+FAILED Gemini/v2_main.py::test_multiple_user_creations_and_deletions[4] - assert 404 == 200
+17 failed, 41 passed in 120.86s (0:02:00)

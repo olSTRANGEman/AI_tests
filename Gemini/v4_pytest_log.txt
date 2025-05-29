@@ -1,0 +1,15 @@
+.F.F.F...F.FF.F..............F..FFF.F.                                                                                                                                                           [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Gemini/v4_main.py::test_post_pet_unsupported_media_type - assert 400 == 415
+FAILED Gemini/v4_main.py::test_put_pet_not_found - assert 200 == 404
+FAILED Gemini/v4_main.py::test_put_pet_unsupported_media_type - assert 400 == 415
+FAILED Gemini/v4_main.py::test_get_pet_by_status_bad_request - assert 200 == 400
+FAILED Gemini/v4_main.py::test_get_pet_by_tags_bad_request - assert 200 == 400
+FAILED Gemini/v4_main.py::test_get_pet_by_id_success - assert 404 == 200
+FAILED Gemini/v4_main.py::test_post_update_pet_form_data_success - assert 404 == 200
+FAILED Gemini/v4_main.py::test_get_user_by_username_success - assert 404 == 200
+FAILED Gemini/v4_main.py::test_put_user_not_found - assert 200 == 404
+FAILED Gemini/v4_main.py::test_put_user_internal_error - assert 400 == 500
+FAILED Gemini/v4_main.py::test_delete_user_success - assert 404 == 200
+FAILED Gemini/v4_main.py::test_crud_pet_flow - assert 404 == 200
+12 failed, 26 passed in 65.02s (0:01:05)

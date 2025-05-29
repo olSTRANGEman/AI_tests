@@ -1,0 +1,19 @@
+.F.FFF...F.FF..FFF.....F............F..FF..FF..                                                                                                                                                  [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Gemini/v3_main.py::test_post_pet_method_not_allowed - assert 415 == 405
+FAILED Gemini/v3_main.py::test_put_pet_not_found - assert 200 == 404
+FAILED Gemini/v3_main.py::test_put_pet_bad_request - assert 500 == 400
+FAILED Gemini/v3_main.py::test_put_pet_method_not_allowed - assert 415 == 405
+FAILED Gemini/v3_main.py::test_get_pet_by_status_bad_request - assert 200 == 400
+FAILED Gemini/v3_main.py::test_get_pet_by_tags_bad_request - assert 200 == 400
+FAILED Gemini/v3_main.py::test_get_pet_by_id_success - assert 404 == 200
+FAILED Gemini/v3_main.py::test_post_update_pet_form_data_success - assert 404 == 200
+FAILED Gemini/v3_main.py::test_post_update_pet_method_not_allowed - assert 415 == 405
+FAILED Gemini/v3_main.py::test_delete_pet_success - assert 404 == 200
+FAILED Gemini/v3_main.py::test_post_store_order_bad_request - assert 500 == 400
+FAILED Gemini/v3_main.py::test_get_user_by_username_success - assert 404 == 200
+FAILED Gemini/v3_main.py::test_put_user_not_found - assert 200 == 404
+FAILED Gemini/v3_main.py::test_put_user_bad_request - assert 500 == 400
+FAILED Gemini/v3_main.py::test_crud_pet_flow - assert 404 == 200
+FAILED Gemini/v3_main.py::test_auth_and_access_flow - assert 404 == 200
+16 failed, 31 passed in 60.36s (0:01:00)

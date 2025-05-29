@@ -1,0 +1,30 @@
+.F.FFF.F...F..F.F..F..F..F....F.F.F.FF..FFFFF....FF....F..FF..F.....                                                                                                                             [100%]
+======================================================================================= short test summary info ========================================================================================
+FAILED Gemini/v1_main.py::test_post_add_pet_invalid_input - assert 200 == 405
+FAILED Gemini/v1_main.py::test_put_update_pet_not_found - assert 200 == 404
+FAILED Gemini/v1_main.py::test_put_update_pet_invalid_id - assert 500 == 400
+FAILED Gemini/v1_main.py::test_get_pet_by_id_success - assert 404 == 200
+FAILED Gemini/v1_main.py::test_get_pet_by_id_invalid_id - assert 404 == 400
+FAILED Gemini/v1_main.py::test_get_pet_by_status_invalid - assert 200 == 400
+FAILED Gemini/v1_main.py::test_delete_pet_invalid_id - assert 404 == 400
+FAILED Gemini/v1_main.py::test_post_update_pet_with_form_data_invalid_input - assert 404 == 405
+FAILED Gemini/v1_main.py::test_post_store_order_invalid - assert 500 == 400
+FAILED Gemini/v1_main.py::test_get_store_order_by_id_invalid - assert 404 == 400
+FAILED Gemini/v1_main.py::test_delete_store_order_invalid_id - assert 404 == 400
+FAILED Gemini/v1_main.py::test_get_user_login_invalid_credentials - assert 200 == 400
+FAILED Gemini/v1_main.py::test_get_user_by_username_success - assert 404 == 200
+FAILED Gemini/v1_main.py::test_get_user_by_username_invalid - assert 404 == 400
+FAILED Gemini/v1_main.py::test_put_update_user_not_found - assert 200 == 404
+FAILED Gemini/v1_main.py::test_put_update_user_invalid_input - assert 500 == 400
+FAILED Gemini/v1_main.py::test_delete_user_invalid_username - assert 404 == 400
+FAILED Gemini/v1_main.py::test_crud_pet_flow - assert 404 == 200
+FAILED Gemini/v1_main.py::test_auth_and_access_flow - assert 404 == 200
+FAILED Gemini/v1_main.py::test_flood_endpoint_with_invalid_requests - assert 200 == 400
+FAILED Gemini/v1_main.py::test_post_pet_with_large_body - assert 200 >= 400
+FAILED Gemini/v1_main.py::test_multiple_pet_creations_and_deletions[1] - assert 404 == 200
+FAILED Gemini/v1_main.py::test_multiple_pet_creations_and_deletions[2] - assert 404 == 200
+FAILED Gemini/v1_main.py::test_multiple_pet_creations_and_deletions[7] - assert 404 == 200
+FAILED Gemini/v1_main.py::test_multiple_user_creations_and_deletions[0] - assert 404 == 200
+FAILED Gemini/v1_main.py::test_multiple_user_creations_and_deletions[1] - assert 404 == 200
+FAILED Gemini/v1_main.py::test_multiple_user_creations_and_deletions[4] - assert 404 == 200
+27 failed, 41 passed in 106.78s (0:01:46)

@@ -1,0 +1,69 @@
+Style Score: 7.1/10
+
+📊 Результаты get_pass_fail_rate:
+🎯 Pass Rate: 44/58 (75.9%)
+API Endpoint Coverage: 6/20 (30.0%)
+
+Средний процент покрытия по endpoint: 54.2%
+Средний процент покрытия по разделам:
+  - pet: 29.2%
+  - store: 79.2%
+  - user: 66.7%
+
+🧪 API partly Endpoint Coverage: 17/20 (85.0%)
+❗ Незаявленные статус-коды: 11 / 48 (22.9%)
+
+✔️ Скорректировано (200==4xx / in [...]): 2 (3.4%)
+🟡 Подозрительных (4xx==200): 9 (15.5%)
+
+METHOD | PATH                     | Specification | Expected    | Missing | CovPct
+------ | ------------------------ | ------------- | ----------- | ------- | ------
+POST   | /pet                     | 405           | 200,500     | 405     |    0.0%
+PUT    | /pet                     | 400,404,405   | 200,400,404 | 405     |   66.7%
+GET    | /pet/findByStatus        | 200,400       | 200         | 400     |   50.0%
+GET    | /pet/findByTags          | 200,400       | -           | 200,400 |    0.0%
+DELETE | /pet/{param}             | 400,404       | 200,404     | 400     |   50.0%
+GET    | /pet/{param}             | 200,400,404   | 200,404     | 400     |   66.7%
+POST   | /pet/{param}             | 405           | 200,404     | 405     |    0.0%
+POST   | /pet/{param}/uploadImage | 200           | -           | 200     |    0.0%
+GET    | /store/inventory         | 200           | 200         | -       |  100.0%
+POST   | /store/order             | 200,400       | 200,400     | -       |  100.0%
+DELETE | /store/order/{param}     | 400,404       | 200,404     | 400     |   50.0%
+GET    | /store/order/{param}     | 200,400,404   | 200,404     | 400     |   66.7%
+POST   | /user                    | default       | 200         | -       |  100.0%
+POST   | /user/createWithArray    | default       | 200         | -       |  100.0%
+POST   | /user/createWithList     | default       | 200         | -       |  100.0%
+GET    | /user/login              | 200,400       | 200         | 400     |   50.0%
+GET    | /user/logout             | default       | 200         | -       |  100.0%
+DELETE | /user/{param}            | 400,404       | 404         | 400     |   50.0%
+GET    | /user/{param}            | 200,400,404   | 404         | 200,400 |   33.3%
+PUT    | /user/{param}            | 400,404       | -           | 400,404 |    0.0%
+
+❗ Список незаявленных случаев:
+   - POST /pet: получили 200, ожидали [405]
+   - POST /pet: получили 500, ожидали [405]
+   - PUT /pet: получили 200, ожидали [400,404,405]
+   - DELETE /pet/{param}: получили 200, ожидали [400,404]
+   - POST /pet/{param}: получили 200, ожидали [405]
+   - POST /pet/{param}: получили 404, ожидали [405]
+   - DELETE /store/order/{param}: получили 200, ожидали [400,404]
+   - POST /user: получили 200, ожидали [-]
+   - POST /user/createWithArray: получили 200, ожидали [-]
+   - POST /user/createWithList: получили 200, ожидали [-]
+   - GET /user/logout: получили 200, ожидали [-]
+
+✔️ Список скорректированных тестов:
+   - Gemini/v2_main.py::test_put_update_pet_not_found
+   - Gemini/v2_main.py::test_put_update_user_not_found
+
+🟡 Список подозрительных тестов:
+   - Gemini/v2_main.py::test_get_pet_by_id_success
+   - Gemini/v2_main.py::test_post_update_pet_with_form_data_success
+   - Gemini/v2_main.py::test_get_user_by_username_success
+   - Gemini/v2_main.py::test_delete_user_success
+   - Gemini/v2_main.py::test_crud_pet_flow
+   - Gemini/v2_main.py::test_auth_and_access_flow
+   - Gemini/v2_main.py::test_multiple_pet_creations_and_deletions[0]
+   - Gemini/v2_main.py::test_multiple_user_creations_and_deletions[3]
+   - Gemini/v2_main.py::test_get_pet_by_id_accept_xml
+⚠️ Flaky tests: ['test_get_pet_by_id_success', 'test_get_store_order_by_id_success', 'test_get_user_by_username_success', 'test_crud_pet_flow', 'test_auth_and_access_flow', 'test_multiple_pet_creations_and_deletions', 'test_multiple_user_creations_and_deletions']
