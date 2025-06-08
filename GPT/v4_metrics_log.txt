@@ -1,4 +1,4 @@
-tyle Score: 4.1/10
+Style Score: 4.1/10
 
 📊 Результаты get_pass_fail_rate:
 🎯 Pass Rate: 34/50 (68.0%)

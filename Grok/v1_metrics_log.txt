@@ -1,0 +1,79 @@
+Style Score: 6.4/10
+
+📊 Результаты get_pass_fail_rate:
+🎯 Pass Rate: 17/50 (34.0%)
+API Endpoint Coverage: 13/20 (65.0%)
+
+Средний процент покрытия по endpoint: 73.3%
+Средний процент покрытия по разделам:
+  - pet: 54.2%
+  - store: 100.0%
+  - user: 79.2%
+
+🧪 API partly Endpoint Coverage: 18/20 (90.0%)
+❗ Незаявленные статус-коды: 17 / 50 (34.0%)
+
+✔️ Скорректировано (200==4xx / in [...]): 3 (6.0%)
+🟡 Подозрительных (4xx==200): 12 (24.0%)
+
+METHOD | PATH                     | Specification | Expected            | Missing | CovPct
+------ | ------------------------ | ------------- | ------------------- | ------- | ------
+POST   | /pet                     | 405           | 200,400,401,413,429 | 405     |    0.0%
+PUT    | /pet                     | 400,404,405   | 200,400,401         | 404,405 |   33.3%
+GET    | /pet/findByStatus        | 200,400       | 200,400             | -       |  100.0%
+GET    | /pet/findByTags          | 200,400       | -                   | 200,400 |    0.0%
+DELETE | /pet/{param}             | 400,404       | 200,400,404         | -       |  100.0%
+GET    | /pet/{param}             | 200,400,404   | 200,400,404         | -       |  100.0%
+POST   | /pet/{param}             | 405           | -                   | 405     |    0.0%
+POST   | /pet/{param}/uploadImage | 200           | 200,400             | -       |  100.0%
+GET    | /store/inventory         | 200           | 200                 | -       |  100.0%
+POST   | /store/order             | 200,400       | 200,400             | -       |  100.0%
+DELETE | /store/order/{param}     | 400,404       | 200,400,404         | -       |  100.0%
+GET    | /store/order/{param}     | 200,400,404   | 200,400,404         | -       |  100.0%
+POST   | /user                    | default       | 200,400,413         | -       |  100.0%
+POST   | /user/createWithArray    | default       | 200                 | -       |  100.0%
+POST   | /user/createWithList     | default       | 200                 | -       |  100.0%
+GET    | /user/login              | 200,400       | 200,400,429         | -       |  100.0%
+GET    | /user/logout             | default       | 200                 | -       |  100.0%
+DELETE | /user/{param}            | 400,404       | 404                 | 400     |   50.0%
+GET    | /user/{param}            | 200,400,404   | 404                 | 200,400 |   33.3%
+PUT    | /user/{param}            | 400,404       | 404                 | 400     |   50.0%
+
+❗ Список незаявленных случаев:
+   - POST /pet: получили 429, ожидали [405]
+   - POST /pet: получили 413, ожидали [405]
+   - POST /pet: получили 200, ожидали [405]
+   - POST /pet: получили 400, ожидали [405]
+   - POST /pet: получили 401, ожидали [405]
+   - PUT /pet: получили 200, ожидали [400,404,405]
+   - PUT /pet: получили 401, ожидали [400,404,405]
+   - DELETE /pet/{param}: получили 200, ожидали [400,404]
+   - POST /pet/{param}/uploadImage: получили 400, ожидали [200]
+   - DELETE /store/order/{param}: получили 200, ожидали [400,404]
+   - POST /user: получили 413, ожидали [-]
+   - POST /user: получили 200, ожидали [-]
+   - POST /user: получили 400, ожидали [-]
+   - POST /user/createWithArray: получили 200, ожидали [-]
+   - POST /user/createWithList: получили 200, ожидали [-]
+   - GET /user/login: получили 429, ожидали [200,400]
+   - GET /user/logout: получили 200, ожидали [-]
+
+✔️ Список скорректированных тестов:
+   - Grok/v1_main.py::test_post_pet_find_by_status_invalid
+   - Grok/v1_main.py::test_post_pet_find_by_tags_invalid
+   - Grok/v1_main.py::test_get_user_login_invalid_credentials
+
+🟡 Список подозрительных тестов:
+   - Grok/v1_main.py::test_post_pet_valid
+   - Grok/v1_main.py::test_post_store_order_valid
+   - Grok/v1_main.py::test_post_user_valid
+   - Grok/v1_main.py::test_get_user_by_name_valid
+   - Grok/v1_main.py::test_put_user_valid
+   - Grok/v1_main.py::test_delete_user_valid
+   - Grok/v1_main.py::test_post_create_with_array_valid
+   - Grok/v1_main.py::test_post_create_with_list_valid
+   - Grok/v1_main.py::test_crud_pet_flow
+   - Grok/v1_main.py::test_crud_store_order_flow
+   - Grok/v1_main.py::test_crud_user_flow
+   - Grok/v1_main.py::test_auth_and_access_flow
+⚠️ Flaky tests: ['test_get_user_by_name_not_found']

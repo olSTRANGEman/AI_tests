@@ -1,3 +1,5 @@
+Style Score: 3.1/10
+
 🎯 Pass Rate: 50/56 (89.3%)
 API Endpoint Coverage: 7/20 (35.0%)
 
